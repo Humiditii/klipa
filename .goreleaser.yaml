@@ -52,9 +52,8 @@ release:
 
 brews:
   - name: klipa
-    tap:
-      owner: Humiditii
-      name: homebrew-tap
+    tap_owner: Humiditii
+    tap_name: homebrew-tap
     commit_author:
       name: Abdulhameed Babatunde
       email: humiditii45@gmail.com
