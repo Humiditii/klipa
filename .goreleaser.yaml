@@ -1,0 +1,66 @@
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+    - go generate ./...
+
+builds:
+  - id: klipa
+    main: ./main.go
+    binary: klipa
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w -X main.version={{.Version}}
+
+archives:
+  - id: default
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format: tar.gz
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - LICENSE
+      - README.md
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+checksum:
+  name_template: "{{ .ProjectName }}_checksums.txt"
+
+release:
+  github:
+    owner: Humiditii 
+    name: klipa
+  footer: |
+    ---
+    Released by [GoReleaser](https://github.com/goreleaser/goreleaser).
+
+brews:
+  - name: klipa
+    tap:
+      owner: Humiditii 
+      name: homebrew-tap
+    commit_author:
+      name: Abdulhameed Babatunde
+      email: humiditii45@gmail.com
+    description: "A CLI clipboard manager for saving and retrieving text from your clipboard."
+    homepage: "https://github.com/Humiditii/klipa"
+    test: |
+      system "#{bin}/klipa", "--help"
+    install: |
+      bin.install "klipa"
