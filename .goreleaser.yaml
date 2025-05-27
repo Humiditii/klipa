@@ -32,6 +32,9 @@ archives:
       - LICENSE
       - README.md
 
+checksum:
+  name_template: "{{ .ProjectName }}_checksums.txt"
+
 changelog:
   sort: asc
   filters:
@@ -39,12 +42,9 @@ changelog:
       - "^docs:"
       - "^test:"
 
-checksum:
-  name_template: "{{ .ProjectName }}_checksums.txt"
-
 release:
   github:
-    owner: Humiditii 
+    owner: Humiditii
     name: klipa
   footer: |
     ---
@@ -52,9 +52,10 @@ release:
 
 brews:
   - name: klipa
-    tap:
-      owner: Humiditii 
+    github:
+      owner: Humiditii
       name: homebrew-tap
+    folder: Formula
     commit_author:
       name: Abdulhameed Babatunde
       email: humiditii45@gmail.com
