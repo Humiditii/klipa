@@ -92,7 +92,7 @@ func CommandSwitcher(args *[]string){
 				Key: k,
 			}
 			dto.Save()
-			return
+			break
 
 		case List:
 			keys := db.GetKeys()
@@ -101,30 +101,30 @@ func CommandSwitcher(args *[]string){
 				fmt.Println((*keys)[i])
 			}
 
-			return
+			break
 		
 		case Get:
 
 			fmt.Println( db.GetValueByKey((*args)[2]))
 
-			return
+			break
 
 		case Flush:
 			db.FlushMem();
 			fmt.Println("klipa memory flushed...")
-			return
+			break
 		
 		case Clear:
 			k := (*args)[2]
 			db.DeleteOne(k)
 			fmt.Printf("%v deleted from klipa \n", k)
-			return
+			break
 		
 		case Copy:
 			k := (*args)[2]
 			db.CopyFromKlipaToMem(k)
 			fmt.Printf(" %v value will be copied to device clipboard \n", k)
-			return
+			break
 	
 	}
 }
