@@ -9,8 +9,6 @@ builds:
   - id: klipa
     main: ./main.go
     binary: klipa
-    env:
-      - CGO_ENABLED=1
     goos:
       - linux
       - windows
@@ -18,8 +16,11 @@ builds:
     goarch:
       - amd64
       - arm64
+    env:
+      - CGO_ENABLED={{ if eq .Os "windows" }}0{{ else }}1{{ end }}
     ldflags:
       - -s -w -X main.version={{.Version}}
+
 
 archives:
   - id: default
