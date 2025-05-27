@@ -23,14 +23,14 @@ builds:
 
 archives:
   - id: default
+    wrap_in_directory: false
     name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
-    format: tar.gz
-    format_overrides:
-      - goos: windows
-        format: zip
     files:
       - LICENSE
       - README.md
+
+checksum:
+  name_template: "{{ .ProjectName }}_checksums.txt"
 
 changelog:
   sort: asc
@@ -38,9 +38,6 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
-
-checksum:
-  name_template: "{{ .ProjectName }}_checksums.txt"
 
 release:
   github:
@@ -52,14 +49,15 @@ release:
 
 brews:
   - name: klipa
-    tap_owner: Humiditii
-    tap_name: homebrew-tap
+    repository:
+      owner: Humiditii
+      name: homebrew-tap
     commit_author:
       name: Abdulhameed Babatunde
       email: humiditii45@gmail.com
     description: "A CLI clipboard manager for saving and retrieving text from your clipboard."
     homepage: "https://github.com/Humiditii/klipa"
-    test: |
-      system "#{bin}/klipa", "--help"
     install: |
       bin.install "klipa"
+    test: |
+      system "#{bin}/klipa", "--help"
