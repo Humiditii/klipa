@@ -3,14 +3,14 @@ package db
 import (
 	"database/sql"
 
-	_ "github.com/mattn/go-sqlite3"
+	_ "modernc.org/sqlite"
 )
 
 var Db *sql.DB
 var err error
 
 func InitDb(){
-	Db, err = sql.Open("sqlite3","klipa_db.sql")
+	Db, err = sql.Open("sqlite","klipa_db.sql")
 
 	if err != nil {
 		panic(err)
