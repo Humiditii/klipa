@@ -4,7 +4,7 @@ go 1.24.3
 
 require (
 	github.com/atotto/clipboard v0.1.4
-	github.com/mattn/go-sqlite3 v1.14.28
+	modernc.org/sqlite v1.37.1
 )
 
 require (
@@ -18,5 +18,4 @@ require (
 	modernc.org/libc v1.65.7 // indirect
 	modernc.org/mathutil v1.7.1 // indirect
 	modernc.org/memory v1.11.0 // indirect
-	modernc.org/sqlite v1.37.1 // indirect
 )
