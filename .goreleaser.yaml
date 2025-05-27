@@ -52,10 +52,9 @@ release:
 
 brews:
   - name: klipa
-    github:
+    tap:
       owner: Humiditii
       name: homebrew-tap
-    folder: Formula
     commit_author:
       name: Abdulhameed Babatunde
       email: humiditii45@gmail.com
