@@ -1,0 +1,7 @@
+FROM golang:1.24.3 AS builder
+
+RUN go install github.com/goreleaser/goreleaser@latest
+
+FROM golang:1.24.3
+
+COPY --from=builder /go/bin/goreleaser /usr/local/bin/goreleaser
